@@ -21,6 +21,7 @@ import 'base/user_messages.dart';
 import 'build_info.dart';
 import 'convert.dart';
 import 'features.dart';
+import 'globals.dart' as globals;
 
 const String kFlutterRootEnvironmentVariableName = 'FLUTTER_ROOT'; // should point to //flutter/ (root of flutter/flutter repo)
 const String kFlutterEngineEnvironmentVariableName = 'FLUTTER_ENGINE'; // should point to //engine/src/ (root of flutter/engine repo)
