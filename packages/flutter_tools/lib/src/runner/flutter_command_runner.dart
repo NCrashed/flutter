@@ -244,7 +244,6 @@ class FlutterCommandRunner extends CommandRunner<void> {
           globals.flutterUsage.suppressAnalytics = true;
         }
 
-        globals.flutterVersion.ensureVersionFile();
         final bool machineFlag = topLevelResults['machine'] as bool;
         final bool ci = await globals.botDetector.isRunningOnBot;
         final bool redirectedCompletion = !globals.stdio.hasTerminal &&
@@ -252,11 +251,6 @@ class FlutterCommandRunner extends CommandRunner<void> {
         final bool isMachine = machineFlag || ci || redirectedCompletion;
         final bool versionCheckFlag = topLevelResults['version-check'] as bool;
         final bool explicitVersionCheckPassed = topLevelResults.wasParsed('version-check') && versionCheckFlag;
-
-        if (topLevelResults.command?.name != 'upgrade' &&
-            (explicitVersionCheckPassed || (versionCheckFlag && !isMachine))) {
-          await globals.flutterVersion.checkFlutterVersionFreshness();
-        }
 
         // See if the user specified a specific device.
         globals.deviceManager.specifiedDeviceId = topLevelResults['device-id'] as String;
