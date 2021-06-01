@@ -304,14 +304,14 @@ class Cache {
     }
     assert(_lock == null);
     
-    final Directory dir = _fileSystem.directory(_fileSystem.path.join(globals.fsUtils.homeDirPath, '.cache', 'flutter'));
+    final Directory dir = _fileSystem.directory(_fileSystem.path.join(globals.fsUtils.homeDirPath!, '.cache', 'flutter'));
     if (!dir.existsSync()) {
       dir.createSync(recursive: true);
       globals.os.chmod(dir, '755');
     }
     
     final File lockFile =
-       _fileSystem.file(_fileSystem.path.join(globals.fsUtils.homeDirPath, '.cache', 'flutter', 'lockfile'));
+       _fileSystem.file(_fileSystem.path.join(globals.fsUtils.homeDirPath!, '.cache', 'flutter', 'lockfile'));
     try {
       _lock = lockFile.openSync(mode: FileMode.write);
     } on FileSystemException catch (e) {
@@ -416,7 +416,7 @@ class Cache {
     if (_rootOverride != null) {
       return _fileSystem.directory(_fileSystem.path.join(_rootOverride!.path, 'bin', 'cache'));
     } else {
-      return _fileSystem.directory(_fileSystem.path.join(globals.fsUtils.homeDirPath, '.cache', 'flutter'));
+      return _fileSystem.directory(_fileSystem.path.join(globals.fsUtils.homeDirPath!, '.cache', 'flutter'));
     }
   }
 
