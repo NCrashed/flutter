@@ -7,6 +7,7 @@
 import 'package:meta/meta.dart';
 import 'package:package_config/package_config.dart';
 
+import 'base/common.dart';
 import 'base/context.dart';
 import 'base/deferred_component.dart';
 import 'base/file_system.dart';
@@ -17,6 +18,7 @@ import 'cache.dart';
 import 'convert.dart';
 import 'dart/package_map.dart';
 import 'devfs.dart';
+import 'globals.dart' as globals;
 import 'flutter_manifest.dart';
 import 'license_collector.dart';
 import 'project.dart';
@@ -496,7 +498,7 @@ class ManifestAssetBundle implements AssetBundle {
       for (final Map<String, Object> font in family['fonts'] as List<Map<String, Object>>) {
         final Uri entryUri = _fileSystem.path.toUri(font['asset'] as String);
         result.add(_Asset(
-          baseDir: _fileSystem.path.join(Cache.flutterRoot, 'bin', 'cache', 'artifacts', 'material_fonts'),
+          baseDir: _fileSystem.path.join(globals.fsUtils.homeDirPath, '.cache', 'flutter', 'artifacts', 'material_fonts'),
           relativeUri: Uri(path: entryUri.pathSegments.last),
           entryUri: entryUri,
           package: null,
